@@ -47,6 +47,7 @@
     '#854d0e',
     '#713f12',
     '#422006',
+    '#FFE600',
   ]
   let gtones = [
     '#ecfdf5',
@@ -100,6 +101,20 @@
   let green = '#69EF00'
   let better6 = false
   let round6 = false
+  function downloadSVG() {
+    const svg = document.getElementsByTagName("svg")[0].outerHTML;
+    const file = new Blob([svg], {type: "image/svg+xml"});
+    const a = document.createElement("a");
+    const url = URL.createObjectURL(file);
+    a.href = url;
+    a.download = "로고 완성본.svg";
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function() {
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);  
+    }, 0); 
+  }
 </script>
 
 <h1>다 만들어오기 귀찮아서 만든거</h1>
@@ -154,6 +169,8 @@
         <path fill-rule="evenodd" clip-rule="evenodd" d="M259.783 239.426C259.783 191.592 298.56 152.815 346.394 152.815H365.891C374.41 152.815 381.315 159.721 381.315 168.239C381.315 176.758 374.41 183.663 365.891 183.663H346.394C320.947 183.663 299.482 200.707 292.791 224.003H331.365C362.818 224.003 388.315 249.5 388.315 280.952C388.315 312.405 362.818 337.902 331.365 337.902H324.049C288.556 337.902 259.783 309.129 259.783 273.636V239.426ZM290.63 254.85V273.636C290.63 292.092 305.592 307.054 324.049 307.054H331.365C345.781 307.054 357.467 295.368 357.467 280.952C357.467 266.537 345.781 254.85 331.365 254.85H290.63Z" fill={green} />
       {/if}
     </svg>
+    <button on:click={downloadSVG}>다운로드</button>
+    <p>다운로드한 파일은 SVG로, jpg나 png로 변환해야 할 수 있어요! <a href="https://convertio.co/kr/svg-jpg/">jpg로바꾸기</a> <a href="https://convertio.co/kr/svg-png/">png로바꾸기</a></p>
   </div>
 </main>
 
